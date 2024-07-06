@@ -4,6 +4,13 @@
 <?php require "config.php"; ?>
 
 <?php
+  // if the session is already set (i.e.,g if a user is already logged in) then
+  // if they happen on this register.php page, they will autmatically be redirected
+  // to the homepage. It's a security issue to let them access the login or register pages.
+  if (isset($_SESSION['username'])) {
+    header('location: index.php');
+  }
+
   if (isset($_POST['submit'])) {
     if ($_POST['email'] == '' or $_POST['username'] == '' or $_POST['password'] == '') {
       if ($_POST['email'] == '') {
